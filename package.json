@@ -1,12 +1,11 @@
 {
-  "name": "medusa-payment-stripe",
-  "version": "6.0.9",
-  "description": "Stripe Payment provider for Medusa Commerce",
+  "name": "medusa-payment-stripe-custom",
+  "version": "1.0.9",
+  "description": "Stripe Payment provider for Medusa Commerce adding support for ACH payments",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-payment-stripe"
+    "url": "https://github.com/HGR-Inc/medusa-payment-stripe"
   },
   "files": [
     "dist"

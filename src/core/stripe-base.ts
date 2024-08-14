@@ -34,7 +34,7 @@ abstract class StripeBase extends AbstractPaymentProcessor {
     this.stripe_ =
       this.stripe_ ||
       new Stripe(this.options_.api_key, {
-        apiVersion: "2022-11-15",
+        apiVersion: "2024-06-20",
       })
   }
 
@@ -73,10 +73,14 @@ abstract class StripeBase extends AbstractPaymentProcessor {
     const id = paymentSessionData.id as string
     const paymentIntent = await this.stripe_.paymentIntents.retrieve(id)
 
+
     switch (paymentIntent.status) {
       case "requires_payment_method":
       case "requires_confirmation":
       case "processing":
+        if(paymentIntent.payment_method_types[0] === "us_bank_account") {
+          return PaymentSessionStatus.AUTHORIZED
+        }
         return PaymentSessionStatus.PENDING
       case "requires_action":
         return PaymentSessionStatus.REQUIRES_MORE
